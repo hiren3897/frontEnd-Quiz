@@ -1,0 +1,10 @@
+<app-header (featureselected)="OnNavigate($event)"></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Admin Panel</h2>
+      <app-question *ngIf="loadedFeature === 'question'"></app-question>
+      <app-exam *ngIf="loadedFeature !== 'question'"></app-exam>
+    </div>
+  </div>
+</div>

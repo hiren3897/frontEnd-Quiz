@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  EXAM
+                </mat-panel-title>
+                <mat-panel-description>
+                  Add Exam Title
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-form-field>
+                <mat-label for="exam">Exam Title</mat-label>
+                <input matInput inputmode="submit" type="text" id="exam"
+                      [(ngModel)]="exam.examtitle" name="examtitle"
+                >
+              </mat-form-field><br>
+              <button mat-button mat-raised-button type="submit" class="btn-success" (click)="addExam()">ADD</button>
+              <button mat-button mat-raised-button class="btn btn-primary" type="submit">Update</button>
+
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <tr>
+          <th>
+            Index
+          </th>
+          <th>
+            Exam title
+          </th>
+
+        </tr >
+        <tr>
+          <td>
+            {{exam.examtitle}}
+          </td>
+        </tr>
+      </div>
+    </form>
+  </div>
+</div>
+
