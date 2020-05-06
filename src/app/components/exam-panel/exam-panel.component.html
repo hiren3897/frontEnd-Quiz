@@ -1,0 +1,43 @@
+<mat-toolbar color="accent">
+  <mat-toolbar-row class="right">
+    Welcome To Exam Panel
+    <a href="#" role="button" (click)="LogOut()" style="alignment: center">LogOut <span class="glyphicon-log-out"></span></a>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="row">
+  <div class="col-xs-12">
+    <form>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <div class="col-sm-5"><br>
+            <mat-label class="mat-step-label-active control-label" style="font-size: medium">
+              Select Exam For MCQ Test
+            </mat-label><br>
+            <mat-form-field>
+              <mat-select matNativeControl required [(ngModel)]="SelectedExam" name="exam" (change)="getExam()">
+                <mat-option *ngFor="let exam of exams" [value]="exam">{{exam.examtitle}}</mat-option>
+              </mat-select>
+            </mat-form-field><br>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5" *ngFor="let opt of choices">
+        <ul>
+          {{question}}
+        </ul>
+        <ul>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox">
+              {{opt.choice}}
+              <span  class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+            </label>
+          </div>
+        </ul>
+        <button >previous</button>
+        <button >next</button>
+      </div>
+    </form>
+  </div>
+</div>
+

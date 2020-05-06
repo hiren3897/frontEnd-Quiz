@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form>
+      <div class="row">
+        <div class="col-sm-5 formGroup">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Question
+                </mat-panel-title>
+                <mat-panel-description>
+                  Add Questions
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-form-field>
+                <mat-label for="singlequestion">Question</mat-label>
+                <input matInput inputmode="submit" type="text" id="singlequestion"
+                       [(ngModel)]="question.question"
+                       name="Question"
+                >
+              </mat-form-field><br>
+              <mat-form-field>
+                <mat-label>Question Type</mat-label>
+                <mat-select matNativeControl required [(ngModel)]="question.type" name="questionType">
+                  <mat-option *ngFor="let type of questionType" [value]="type.valueOf()">{{type}}</mat-option>
+                </mat-select>
+              </mat-form-field><br>
+              <mat-form-field>
+                <mat-label>Select Exam</mat-label>
+                  <mat-select [(ngModel)]="selectedExam" name="examSelected">
+                  <mat-option *ngFor="let exam of exams; let i = index" [value]="i + 1">{{exam.examtitle}}</mat-option>
+                </mat-select>
+              </mat-form-field><br>
+              <button mat-button mat-raised-button type="submit" class="btn-success" (click)="addQuestion()">ADD</button>
+              <button mat-button mat-raised-button class="btn btn-primary" type="submit" (click)="OnUpdate()">Update</button>
+
+            </mat-expansion-panel>
+          </mat-accordion>
+
+        </div>
+      </div><br>
+
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  MCQ Choices
+                </mat-panel-title>
+                <mat-panel-description>
+                  For Multiple Choice Question.
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-form-field>
+                <mat-label>Select Question</mat-label>
+                <mat-select matNativeControl required [(ngModel)]="SelectedQuestion" name="MCQQuestion">
+                  <mat-option *ngFor="let question of qts; let i = index" [value]=" i + 1">{{question.question}}</mat-option>
+                </mat-select>
+              </mat-form-field><br>
+              <mat-form-field>
+                <mat-label>Option's</mat-label>
+                <input matInput [(ngModel)]="mcqchoice.choice" name="choice 1">
+              </mat-form-field><br>
+              <mat-form-field appearance="fill">
+                <mat-label>Validation</mat-label>
+                <mat-select [(ngModel)]="mcqchoice.valid" name="Valid">
+                  <mat-option *ngFor ="let valid of validation" [value]="valid.valueOf()">{{ valid }}</mat-option>
+                </mat-select>
+              </mat-form-field><br>
+              <button mat-button mat-raised-button type="submit" class="btn-success" (click)="addOption()">ADD Options</button>
+              <button mat-button mat-raised-button class="btn btn-primary" type="submit" (click)="OnMCQUpdate()">Update</button>
+              <button mat-button mat-raised-button type="submit" class="btn-success" (click)="submit()">Submit</button>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+        </div>
+      </div>
+
+      <div class="col-xm-8">
+        <hr>
+        <mat-label>MCQ Questions Added</mat-label>
+          <table class="table table-bordered" style="table-layout: auto; table-border-color-light: black; align-items: center">
+            <tr>
+              <th>Options Added</th>
+              <th>Delete Question</th>
+              <th>Edit Question</th>
+            </tr>
+          <tr *ngFor="let mcqs of mcqchoices">
+            <td>{{mcqs.choice}}</td>
+            <td><button mat-button class="btn btn-danger" type="submit" (click)="OnMCQDelete()">Delete</button></td>
+            <td><button mat-button class="btn btn-primary" type="submit" (click)="OnMCQEdit()">Edit</button></td>
+          </tr>
+          </table>
+      </div>
+      <div class="col-sm-5"><hr>
+      <mat-label>Single Questions Added</mat-label>
+      <table class="table table-bordered" style="table-layout: auto; table-border-color-light: black; align-items: center">
+        <tr>
+          <th>Question Added</th>
+          <th>Delete Question</th>
+          <th>Edit Question</th>
+        </tr>
+        <tr *ngFor="let question of qts">
+          <td>
+            {{question.question}}
+          </td>
+          <td><button mat-button class="btn btn-danger" type="submit" (click)="OnDelete()">Delete</button></td>
+          <td><button mat-button class="btn btn-primary" type="submit" (click)="OnEdit()">Edit</button></td>
+        </tr>
+      </table>
+
+      </div>
+    </form>
+  </div>
+</div>
+
