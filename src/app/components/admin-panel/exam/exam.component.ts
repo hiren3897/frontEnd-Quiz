@@ -20,7 +20,6 @@ export class ExamComponent implements OnInit {
     this.examService.post(this.exam, (exam) => {
       this.exam = exam;
       console.log(exam);
-      localStorage.setItem('exam', JSON.stringify(exam));
     });
   }
 

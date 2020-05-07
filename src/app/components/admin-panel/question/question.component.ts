@@ -43,13 +43,14 @@ export class QuestionComponent implements OnInit {
   }
 
   addQuestion(){
-    const examTemp = this.exams[this.selectedExam - 1]
+    const examTemp = this.exams[this.selectedExam - 1];
     // console.log(examTemp);
     this.question.examtitle = examTemp;
    //  console.log(this.question);
    // return;
     this.questionService.setEndUrl('createQuestion');
     this.questionService.post(this.question, (question) => {
+      this.question = question;
       this.showAlert();
     });
   }
@@ -59,6 +60,11 @@ export class QuestionComponent implements OnInit {
   }
 
   OnEdit() {
+    this.questionService.setEndUrl('updateQuestion');
+    this.questionService.put(this.question, (question) => {
+      this.question = question;
+      this.addQuestion();
+    });
 
   }
 
@@ -66,6 +72,7 @@ export class QuestionComponent implements OnInit {
     this.questionService.setEndUrl('deleteQuestion');
     this.questionService.delete(this.question, (question ) => {
       this.question = question;
+      console.log('question deleted');
     });
 
   }
@@ -105,15 +112,26 @@ export class QuestionComponent implements OnInit {
   submit() {
     this.mcqchoiceService.setEndUrl('createMcqQuestion');
     this.mcqchoiceService.postArray(this.mcqchoices, (choices ) => {
+      this.mcqchoices = choices;
       this.showMCQAlert();
     });
   }
 
   OnMCQDelete(){
+    this.mcqchoiceService.setEndUrl('deleteMCQ');
+    this.mcqchoiceService.delete(this.mcqchoice, (mcqchoice) => {
+      this.mcqchoice = mcqchoice;
+      console.log('Choice deleted');
+    });
 
   }
 
   OnMCQEdit() {
+    this.mcqchoiceService.setEndUrl('updateMCQChoice');
+    this.mcqchoiceService.put(this.mcqchoice, (choices) => {
+      this.mcqchoice = choices;
+      this.submit();
+    });
 
   }
 
