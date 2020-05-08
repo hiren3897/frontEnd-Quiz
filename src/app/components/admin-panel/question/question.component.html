@@ -28,7 +28,7 @@
               </mat-form-field><br>
               <mat-form-field>
                 <mat-label>Select Exam</mat-label>
-                  <mat-select [(ngModel)]="selectedExam" name="examSelected">
+                  <mat-select matNativeControl required [(ngModel)]="selectedExam" name="examSelected">
                   <mat-option *ngFor="let exam of exams; let i = index" [value]="i + 1">{{exam.examtitle}}</mat-option>
                 </mat-select>
               </mat-form-field><br>
@@ -70,7 +70,7 @@
                 </mat-select>
               </mat-form-field><br>
               <button mat-button mat-raised-button type="submit" class="btn-success" (click)="addOption()">ADD Options</button>
-              <button mat-button mat-raised-button class="btn btn-primary" type="submit" (click)="OnMCQUpdate()">Update</button>
+              <button mat-button mat-raised-button class="btn btn-primary" type="submit" (click)="OnMCQUpdate()">Update</button><br><br>
               <button mat-button mat-raised-button type="submit" class="btn-success" (click)="submit()">Submit</button>
             </mat-expansion-panel>
           </mat-accordion>

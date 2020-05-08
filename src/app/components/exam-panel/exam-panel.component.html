@@ -14,29 +14,29 @@
               Select Exam For MCQ Test
             </mat-label><br>
             <mat-form-field>
-              <mat-select matNativeControl required [(ngModel)]="SelectedExam" name="exam" (change)="getExam()">
+              <mat-select matNativeControl required [(ngModel)]="SelectedExam" name="exam" (click)="getExam()">
                 <mat-option *ngFor="let exam of exams" [value]="exam">{{exam.examtitle}}</mat-option>
               </mat-select>
             </mat-form-field><br>
           </div>
         </div>
       </div>
-      <div class="col-sm-5" *ngFor="let opt of choices">
+      <div class="col-sm-5" *ngFor="let opt of qts">
         <ul>
-          {{question}}
+          {{opt.question}}
         </ul>
         <ul>
-          <div class="checkbox">
+          <div class="checkbox" *ngFor="let gpt of choices">
             <label>
               <input type="checkbox">
-              {{opt.choice}}
-              <span  class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-            </label>
+              {{gpt.choice}}
+              <span  class="cr"></span>
+            </label><br>
           </div>
         </ul>
-        <button >previous</button>
-        <button >next</button>
       </div>
+      <button mat-raised-button color="primary" >previous</button>
+      <button mat-raised-button color="primary" >next</button>
     </form>
   </div>
 </div>

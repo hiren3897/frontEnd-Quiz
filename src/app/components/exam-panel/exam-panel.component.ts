@@ -6,6 +6,7 @@ import {QuestionModel} from '../../models/question.model';
 import {McqchoiceService} from '../../services/mcqchoice.service';
 import {MCQChoiceModel} from '../../models/MCQChoice.model';
 import {Router} from '@angular/router';
+import {subscribeTo} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-exam-panel',
@@ -16,10 +17,10 @@ export class ExamPanelComponent implements OnInit {
   exams: ExamModel[];
   qts: QuestionModel[];
   choices: MCQChoiceModel[];
-  selected: any[];
+  selected: QuestionModel[];
   SelectedExam: string;
-  question: any;
-  choice: any[];
+  question: string;
+
   constructor(private examService: ExamService, private questionService: QuestionService, private mcqchoiceService: McqchoiceService, private router: Router) {
     this.getAll();
   }
@@ -46,8 +47,7 @@ export class ExamPanelComponent implements OnInit {
 
   getExam() {
     this.selected = this.qts.filter(d => (d.examtitle.examtitle === this.SelectedExam));
-    console.log(this.selected);
-
+    this.question = this.selected[0].question;
   }
 
   LogOut() {

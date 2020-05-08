@@ -72,6 +72,7 @@ export class QuestionComponent implements OnInit {
     this.questionService.setEndUrl('deleteQuestion');
     this.questionService.delete(this.question, (question ) => {
       this.question = question;
+      this.qts.splice(this.question.id, 1);
       console.log('question deleted');
     });
 
@@ -121,6 +122,7 @@ export class QuestionComponent implements OnInit {
     this.mcqchoiceService.setEndUrl('deleteMCQ');
     this.mcqchoiceService.delete(this.mcqchoice, (mcqchoice) => {
       this.mcqchoice = mcqchoice;
+      this.mcqchoices.splice(this.mcqchoice.id, 1);
       console.log('Choice deleted');
     });
 
