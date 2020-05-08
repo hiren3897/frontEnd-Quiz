@@ -28,7 +28,7 @@
         <ul>
           <div class="checkbox" *ngFor="let gpt of choices">
             <label>
-              <input type="checkbox">
+              <input type="checkbox" [value]="answerkey">
               {{gpt.choice}}
               <span  class="cr"></span>
             </label><br>
@@ -39,5 +39,6 @@
       <button mat-raised-button color="primary" >next</button>
     </form>
   </div>
+  <button mat-raised-button color="primary" type="submit" (click)="generateMark()">Submit</button>
 </div>
 

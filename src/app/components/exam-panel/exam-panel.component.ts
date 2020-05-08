@@ -8,22 +8,27 @@ import {MCQChoiceModel} from '../../models/MCQChoice.model';
 import {Router} from '@angular/router';
 import {subscribeTo} from 'rxjs/internal-compatibility';
 
+
 @Component({
   selector: 'app-exam-panel',
   templateUrl: './exam-panel.component.html',
   styleUrls: ['./exam-panel.component.css']
 })
 export class ExamPanelComponent implements OnInit {
+  private marks = 0;
+
+  // tslint:disable-next-line:max-line-length
+  constructor(private examService: ExamService, private questionService: QuestionService, private mcqchoiceService: McqchoiceService, private router: Router) {
+    this.getAll();
+  }
   exams: ExamModel[];
   qts: QuestionModel[];
   choices: MCQChoiceModel[];
   selected: QuestionModel[];
   SelectedExam: string;
   question: string;
-
-  constructor(private examService: ExamService, private questionService: QuestionService, private mcqchoiceService: McqchoiceService, private router: Router) {
-    this.getAll();
-  }
+  choice: MCQChoiceModel;
+  answerkey: any = [];
 
   ngOnInit(): void {
   }
@@ -54,4 +59,13 @@ export class ExamPanelComponent implements OnInit {
     this.router.navigate((['login']));
   }
 
+  generateMark() {
+    for (let i = 0; i < this.answerkey.length; i++) {
+      if (this.answerkey === this.choices[i].choice && this.choices[i].valid === true) {
+        this.marks++;
+      }
+    }
+    // alert("your score is "+JSON.stringify(this.marks));
+    document.writeln('your score is ' + this.marks);
+  }
 }
